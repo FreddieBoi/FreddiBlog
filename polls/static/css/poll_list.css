@@ -1,1 +1,5 @@
 /* poll_list styles */
+
+a, a:hover, a:visited {
+    color: #c0c;
+}

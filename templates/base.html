@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}FreddiBlog{% endblock %}</title>
+    {% load static %}
+    {% get_static_prefix as STATIC_PREFIX %}
+    <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/base.css" type="text/css" media="screen" />
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        {% block header %}FreddiBlog{% endblock %}
+    </header>
+    <nav>
+        {% block nav %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/polls/">Polls</a></li>
+        </ul>
+        {% endblock %}
+    </nav>
+    <section>
+        <h1>{% block h1 %}{% endblock %}</h1>
+        {% block content %}{% endblock %}
+    </section>
+    <footer>
+        {% block footer %}{% endblock %}
+    </footer>
+</body>
+</html>

@@ -1,14 +1,19 @@
-{% load static %}
-{% get_static_prefix as STATIC_PREFIX %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/base.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/poll_list.css" type="text/css" media="screen" />
+{% extends "polls/base.html" %}
 
-{% if latest_poll_list %}
-    <ul>
-    {% for poll in latest_poll_list %}
-        <li><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% block title %}FreddiBlog - Poll list{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/poll_list.css" type="text/css" media="screen" />{% endblock %}
+
+{% block h1 %}Poll list{% endblock %}
+
+{% block content %}
+    {% if poll_list %}
+        <ul>
+        {% for poll in poll_list %}
+            <li><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+{% endblock %}

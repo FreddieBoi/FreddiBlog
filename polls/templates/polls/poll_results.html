@@ -1,12 +1,15 @@
-{% load static %}
-{% get_static_prefix as STATIC_PREFIX %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/base.css" type="text/css" media="screen" />
-<h1>{{ poll.question }}</h1>
+{% extends "polls/base.html" %}
 
-<ul>
-{% for choice in poll.choice_set.all %}
-    <li>{{ choice.choice }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+{% block title %}FreddiBlog - Poll results for {{ poll.question }}{% endblock %}
+
+{% block h1 %}Poll results for {{ poll.question }}{% endblock %}
+
+{% block content %}
+    <ul>
+    {% for choice in poll.choice_set.all %}
+        <li>{{ choice.choice }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
 
 <a href="/polls/{{ poll.id }}/">Vote again?</a>
