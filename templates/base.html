@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 <head>
     <title>{% block title %}FreddiBlog{% endblock %}</title>
     {% load static %}
     {% get_static_prefix as STATIC_PREFIX %}
     <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/base.css" type="text/css" media="screen" />
     {% block css %}{% endblock %}
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_PREFIX }}js/main.js" ></script>
+    {% block js %}{% endblock %}
+    
+    {% comment %}
+    {# Removed due to not working on windows? #}
+    {% load coffeescript %}
+    <script type="text/javascript" src="{{ STATIC_URL}}{% coffeescript "coffee/main.coffee" %}">
+    </script>
+    {% endcomment %}
+    
+    <meta itemprop="name" content="FreddiBlog">
+    <meta itemprop="description" content="Coffee, code, licorice and punkrawk!">
 </head>
 
 <body>
@@ -25,6 +39,7 @@
         {% block content %}{% endblock %}
     </section>
     <footer>
+        <g:plusone annotation="inline"></g:plusone>
         {% block footer %}{% endblock %}
     </footer>
 </body>
